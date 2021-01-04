@@ -29,7 +29,7 @@ public final class Documento {
 	//Methods
 	@Override
 	public String toString() {
-		return "Documento [tipo=" + tipo + ", num=" + num + "]";
+		return  tipo + ": " + num;
 	}
 	
 	
