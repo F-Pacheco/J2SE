@@ -68,6 +68,7 @@ public class CollectionHashSet {
 		System.out.println("---------------");
 		
 		Iterator<String> iterador = nombres.iterator();
+		
 		System.out.println("ITerando...");
 		while (iterador.hasNext()) {
 			String elemento = (String) iterador.next();

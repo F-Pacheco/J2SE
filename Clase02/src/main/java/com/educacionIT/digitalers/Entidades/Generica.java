@@ -29,7 +29,7 @@ public final class Generica<T,N>{
 	
 	@Override
 	public String toString() {
-		return "Generica [tipo=" + tipo + ", numero=" + numero + "]";
+		return  tipo + ": " + numero;
 	}
 	@Override
 	public int hashCode() {

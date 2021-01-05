@@ -18,7 +18,7 @@ public class AppColas {
 		Thread.sleep(2000);
 		
 		while(!(cola.isEmpty())) {
-			System.out.println(cola.poll());
+			System.out.println(cola.pollFirst());
 			Thread.sleep(2000);
 		}
 	}
