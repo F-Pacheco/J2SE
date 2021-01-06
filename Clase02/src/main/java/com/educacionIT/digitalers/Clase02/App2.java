@@ -10,8 +10,7 @@ import com.educacionIT.digitalers.Entidades.Documento;
 public class App2 {
 
 	public static void main(String[] args) {
-		final List<String> comparador = Arrays.asList("DNI","CI","LE");	//Para obtener los documentos ordenados segun la secuencia DNI, CI, LE
-		
+			
 		List<Documento> documentos = new ArrayList<>();
 		documentos.add(new Documento("DNI","02"));
 		documentos.add(new Documento("Dni","04"));
@@ -24,11 +23,11 @@ public class App2 {
 		documentos.add(new Documento("Ci","01"));
 		documentos.add(new Documento("Ci","03"));
 		
-
 		documentos.sort(
 				new Comparator<Documento>() {
 					@Override
 					public int compare(Documento dni1, Documento dni2) {
+						List<String> comparador = Arrays.asList("DNI","CI","LE");	//Para obtener los documentos ordenados segun la secuencia DNI, CI, LE
 						Integer tipo = dni1.getTipo().toUpperCase().compareTo(dni2.getTipo().toUpperCase());
 						if(tipo == 0) { 
 							return dni1.getNum().compareTo(dni2.getNum());
