@@ -31,7 +31,6 @@ public class AppConsultaPreparada {
 			e.printStackTrace();
 		}
         
-        
         try {
         	String filtro = JOptionPane.showInputDialog("Indica usuario");
         	String buscar = "select id,descripcion,clave from usuarios where descripcion = ?";
@@ -46,15 +45,21 @@ public class AppConsultaPreparada {
 				
 				System.out.println(userAux);
 				System.out.println("-------------------");
-			}
-			
-			
-			
-			
+			}			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
         
+      //Actualizar base de datos
+        String actualizar = "update usuarios set clave = ? where id = ?";
+        try {
+			pSt = conexionSql.prepareStatement(actualizar);
+			pSt.setString(1, "99999");
+			pSt.setInt(2, 3);
+			pSt.executeQuery();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
         
         
       //Cerrar la conexión con la base de datos
