@@ -26,6 +26,7 @@ public class App
     	
     	AlumnoImplementacion alumnoImp = new AlumnoImplementacion();
     	
+    	
     	System.out.println(alumnoImp.buscarPorId(new Documento("DNI","06")));
     	
     	System.out.println("==================");
