@@ -5,16 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.educacionIT.digitalers.Entidades.Alumno;
 import com.educacionIT.digitalers.Entidades.Documento;
-import com.educacionIT.digitalers.Entidades.Persona;
-import com.educacionIT.digitalers.Entidades.Usuario;
 import com.educacionIT.digitalers.Interfaces.ConexionMariaDB;
 import com.educacionIT.digitalers.Interfaces.DAO;
 
-public class AlumnoImplementacion implements DAO<Persona, Documento>, ConexionMariaDB{
+public class AlumnoImplementacion implements DAO<Alumno, Documento>, ConexionMariaDB{
 	private Connection conexion = null;
 	private PreparedStatement psInsertar = null;
 	private PreparedStatement psActualizar = null;
@@ -39,7 +38,7 @@ public class AlumnoImplementacion implements DAO<Persona, Documento>, ConexionMa
 	
 	//Methods
 	@Override
-	public void insertar(Persona elemento) {
+	public void insertar(Alumno elemento) {
 		try {
 			if (psInsertar == null) {
 				psInsertar = conexion.prepareStatement(QUERY_INSERTAR);
@@ -61,7 +60,7 @@ public class AlumnoImplementacion implements DAO<Persona, Documento>, ConexionMa
 	}
 
 	@Override
-	public void eliminar(Persona elemento) {
+	public void eliminar(Alumno elemento) {
 		try {
 			if(psEliminar == null) {
 				psEliminar = conexion.prepareStatement(QUERY_ELIMINAR);
@@ -77,7 +76,7 @@ public class AlumnoImplementacion implements DAO<Persona, Documento>, ConexionMa
 	}
 
 	@Override
-	public void actualizar(Persona elemento) {
+	public void actualizar(Alumno elemento) {
 		try {
 			if(psActualizar == null) {
 				psActualizar = conexion.prepareStatement(QUERY_ACTUALIZAR);
@@ -98,7 +97,7 @@ public class AlumnoImplementacion implements DAO<Persona, Documento>, ConexionMa
 	}
 
 	@Override
-	public Persona buscarPorId(Documento key) {
+	public Alumno buscarPorId(Documento key) {
 		Alumno alumnoAux = null;
 		try {
 			if (psBuscar == null) {
@@ -125,9 +124,28 @@ public class AlumnoImplementacion implements DAO<Persona, Documento>, ConexionMa
 	}
 
 	@Override
-	public List<Persona> listar() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Alumno> listar() {
+		List<Alumno> listaAux = new ArrayList<>();
+		try {
+			if(psListar == null) {
+				psListar = conexion.prepareStatement(QUERY_LISTAR);
+			}
+			ResultSet rs = psListar.executeQuery();
+			while(rs.next()) {
+				Alumno alumnoAux = new Alumno();
+				alumnoAux.setDescripcion(rs.getString("descripcion"));
+				alumnoAux.setDireccion(rs.getString("direccion"));
+				alumnoAux.setActivo(rs.getBoolean("activo"));
+				alumnoAux.setDocumento(new Documento(rs.getString("tipoDocumento"),rs.getString("numeroDocumento")));;
+				alumnoAux.setFechaNacimiento(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(rs.getDate("fechaNacimiento"))));
+				alumnoAux.setFechaCreacion(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(rs.getDate("fechaCreacion"))));
+				
+				listaAux.add(alumnoAux);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaAux;
 	}
 	
 }
