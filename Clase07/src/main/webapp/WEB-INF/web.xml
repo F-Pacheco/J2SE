@@ -12,6 +12,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>Validacion</servlet-name>
-  	<url-pattern>/Validacion</url-pattern>
+  	<url-pattern>/Ingreso</url-pattern>
   </servlet-mapping>
 </web-app>

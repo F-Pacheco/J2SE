@@ -9,25 +9,29 @@
 <body>
 	<h1>Mi primer pagina JSP</h1>
 	
-	<table style="border: 1px solid blue;">
-		<tr >
-			<th>Header 1</th>
-			<th>Header 2</th>
-			<th>Header 3</th>
-		</tr>
+	<div>
+		<form action="Ingreso" method="post">
+		<label>
+			Descripcion
+			<input type="text" name= "descripcion" required>
+		</label>
+		<label>
+			Clave
+			<input type="password" name = "clave" required>
+		</label>
 		
-		<%
-			for (int i =0; i<10;i++){
-		%>
-		<tr>
-			<td>Columna 1 valor <%=i%><td>
-			<td>Columna 2 valor <%=i%><td>
-			<td>Columna 3 valor <%=i%><td>
-		</tr>
-		<%
-			}
-		%>
-	</table>
+		<button>Enviar</button>
+		
+		</form>
+	
+	</div>
+	
+	<%
+		String error =(String) request.getAttribute("error");
+		if (null!=error && !error.isEmpty()){
+	%>
+	<h1 style="color: red;"><%=error %></h1>
+	<% }%>
 	
 </body>
 </html>
