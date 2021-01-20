@@ -80,7 +80,6 @@ public class UsuarioImplementacion implements DAO<Usuario,String[]>,conexionMari
 			
 			psActualizar.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -95,7 +94,6 @@ public class UsuarioImplementacion implements DAO<Usuario,String[]>,conexionMari
 			psEliminar.setString(1, usuario.getDescripcion());
 			psEliminar.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
