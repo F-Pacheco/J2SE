@@ -20,11 +20,15 @@ public interface conexionMariaDB {
 			final String USER = prop.getProperty("db.user");
 			final String PASS = prop.getProperty("db.pass");
 			
+			Class.forName("org.mariadb.jdbc.Driver");
+			
 			aux = DriverManager.getConnection(URL, USER, PASS);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} 
 		

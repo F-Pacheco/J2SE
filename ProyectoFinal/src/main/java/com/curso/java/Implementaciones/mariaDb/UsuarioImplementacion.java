@@ -158,7 +158,7 @@ public class UsuarioImplementacion implements DAO<Usuario,String[]>,conexionMari
 	public static void main(String[] args) {
 		UsuarioImplementacion imp = new UsuarioImplementacion();
 		try {
-			Usuario user = new Usuario("meximi@gmail.com","Fede12345Cam",true);
+			Usuario user = new Usuario("fede@gmail.com","Fede12345",true);
 			//imp.insertar(user);
 			String[] credenciales = {user.getDescripcion(),user.getClave()};
 			System.out.println(imp.buscar(credenciales));
