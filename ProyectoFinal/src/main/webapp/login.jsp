@@ -1,3 +1,4 @@
+<%@page import="com.curso.java.Entidades.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <!DOCTYPE html>
@@ -14,6 +15,19 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
     
         <title>Inicio de sesion</title>
+        
+        
+        <%
+        	Usuario usuario = (Usuario) session.getAttribute("usuario");
+        	if (null != usuario){
+        		response.sendRedirect("index.jsp");
+        	}
+        
+        %>
+        
+        
+        
+        
     </head>
     <body>
         <main class="contenedor">

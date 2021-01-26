@@ -1,5 +1,10 @@
 package com.curso.java.Implementaciones.mariaDb;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +40,7 @@ public class UsuarioImplementacion implements DAO<Usuario,String[]>,conexionMari
 	
 	//Constructors
 	public UsuarioImplementacion() {
-			this.conexion = conectar();
+			this.conexion = conectar();		
 		}
 	
 	//Getters & setters
@@ -103,7 +108,7 @@ public class UsuarioImplementacion implements DAO<Usuario,String[]>,conexionMari
 	public Usuario buscar(String[] credenciales) {
 		Usuario usAux = null;
 		try {
-			if(credenciales.length != 2 || null == credenciales) {
+			if((credenciales.length != 2) || (null == credenciales)) {
 				throw new Exception("Debe enviar descripcion y clave");
 			}
 			if(null == psBuscar) {
@@ -167,6 +172,30 @@ public class UsuarioImplementacion implements DAO<Usuario,String[]>,conexionMari
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		String separador = File.separator;
+		
+		File file = new File(separador+"ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.txt"); 
+		
+		try(FileReader fr = new FileReader(file)){
+			int elemento;
+			while ((elemento = fr.read()) != -1) {
+				System.out.print((char)elemento);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		
+		/*
+		File fichero = new File("ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.txt");
+		System.out.println("LA RUTA ESSSSSSS::: "+fichero.getAbsolutePath());
+		*/
+		
 	}
 
 }

@@ -34,6 +34,7 @@ public class Autenticacion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean accion = Boolean.valueOf(request.getParameter("accion")); //casteo a boolean
+		
 		if (accion && null != request.getSession().getId()) {
 			request.getSession().invalidate();
 			response.sendRedirect("login.jsp");
@@ -57,9 +58,11 @@ public class Autenticacion extends HttpServlet {
 			HttpSession sesion = request.getSession();
 			sesion.setAttribute("usuario", userSession);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+			
 		}else {
 			request.setAttribute("ALERTA", "Credenciales incorrectas!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
+			System.out.println(userSession);
 			
 		}
 	}
