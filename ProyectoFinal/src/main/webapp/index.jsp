@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.curso.java.Entidades.Profesor"%>
 <%@page import="com.curso.java.Entidades.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -35,6 +37,7 @@
 
 	<%
         	Usuario usuario = (Usuario) session.getAttribute("usuario");
+			List<Profesor>  profesores = (List<Profesor>) session.getAttribute("Profesores");
          	if (null == usuario){
          		response.sendRedirect("login.jsp");
          	}else {
@@ -67,9 +70,7 @@
 			</div>
 		</div>
 	</nav>
-	<%
-         	}
-    	%>
+	
 	<main>
 		<div class="container">
 			<div>
@@ -86,35 +87,33 @@
 						<th>Fecha Nacimiento</th>
 						<th>Activo</th>
 						<th>Fecha de creacion</th>
-						<th>Acción</th>
+						<th>Accion</th>
 					</tr>
 				</thead>
 				<tbody>
+				<%
+					for(Profesor profesor: profesores){
+					
+				%>
+				
 					<tr>
-						<td>DNI</td>
-						<td>511515</td>
-						<td>FP</td>
-						<td>18/10/1993</td>
-						<td>Activo</td>
-						<td>19/85/24</td>
+						<td><%=profesor.getDocumento().getTipo() %></td>
+						<td><%=profesor.getDocumento().getNumero() %></td>
+						<td><%=profesor.getDescripcion() %></td>
+						<td><%=profesor.getFechaNacimiento() %></td>
+						<td><%=(profesor.getActivo()?"Activo":"Inactivo")%></td>
+						<td><%=profesor.getFechaCreacion() %></td>
 						<td><a class="btn btn-warning" role="button" href="#"><i
 								class="far fa-edit"></i></a> <a class="btn btn-danger" role="button"
 							href="#"><i class="far fa-trash-alt"></i></a></td>
 					</tr>
-					<tr>
-						<td>DNI</td>
-						<td>511515</td>
-						<td>FP</td>
-						<td>18/10/1993</td>
-						<td>Activo</td>
-						<td>19/85/24</td>
-						<td><a class="btn btn-warning" role="button" href="#"><i
-								class="far fa-edit"></i></a> <a class="btn btn-danger" role="button"
-							href="#"><i class="far fa-trash-alt"></i></a></td>
-					</tr>
+				<% } %>
 				</tbody>
 			</table>
 		</div>
+		<%
+         	}
+    	%>
 	</main>
 	<footer style="margin-bottom: 0;" class="jumbotron text-center">
 		<h6>Educacion IT</h6>

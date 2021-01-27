@@ -6,8 +6,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/main.css">
-    
+         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -22,7 +21,10 @@
         	if (null != usuario){
         		response.sendRedirect("index.jsp");
         	}
-        
+        	String alerta = (String) request.getAttribute("ALERTA");
+        	String tipo = null;
+        	String mensaje= null;
+        	
         %>
         
         
@@ -39,6 +41,32 @@
                 <div class="cl-sm-12 login">
     
                     <div class="modal-content border border-0">
+                        
+                        <%
+                        	if(null != alerta){
+                            	switch(alerta){
+                            	case "SESION_CERRADA":
+                            		tipo = "success";
+                            		mensaje = "Sesion cerrada correctamente";
+                            		break;
+                            	case "ERROR_CREDENCIALES":
+                            		tipo = "warning";
+                            		mensaje = "Credenciales incorrectas";
+                            		break;
+                            	
+                            	}
+                        		
+                        %>
+                        <div style="margin-bottom:0;" class="alert alert-<%=tipo%> alert-dismissible">
+                            <button class="close" data-dismiss="alert">
+                                &times;
+                            </button>
+                            <strong>
+                                ALERTA!
+                            </strong> <%=mensaje %> 
+                        </div>
+                        <%} %>
+                        
                         <div class="col-12 user-img">
                             <img src="img/avatar-login.svg" alt="avatar-profesor" >
                         </div>

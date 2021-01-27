@@ -12,7 +12,7 @@
 }
 .user-img{
 
-
+	margin-top:-1rem;
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,228,255,1) 59%);   
 }
@@ -26,11 +26,10 @@ form{
     box-shadow: 5px 5px 14px 5px rgba(0,0,0,0.65);
     
 }
-.ho{
-   justify-self: flex-end; 
-}
+
 img{
     width: 200px;
     height: 150px;
     border-radius: 50%;
 }
+
